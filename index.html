@@ -16,6 +16,7 @@
     <nav class="nav" id="nav">
       <a href="#about" data-t="navAbout">О нас</a>
       <a href="#menu" data-t="navMenu">Меню</a>
+      <a href="#cakes" id="navCakes" data-t="navCakes" hidden>Торты</a>
       <a href="#contact" data-t="navContact">Контакты</a>
       <button id="theme" class="theme" aria-label="Сменить тему">🌙</button>
     </nav>
@@ -41,6 +42,17 @@
       <h2 id="menuTitle">Меню</h2>
       <div class="filters" id="filters"></div>
       <ul class="menu" id="menuList"></ul>
+    </section>
+
+    <section id="cakes" class="section" hidden>
+      <h2 id="cakesTitle">Торты</h2>
+      <div class="cakes">
+        <div class="cake-photo" id="cakePhoto">
+          <img id="cakeImg" alt="" hidden>
+          <div class="ph" id="cakePh">Фото скоро появится</div>
+        </div>
+        <div class="cake-tabs" id="cakeTabs" role="tablist"></div>
+      </div>
     </section>
 
     <section id="contact" class="section">

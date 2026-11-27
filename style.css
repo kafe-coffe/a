@@ -107,6 +107,18 @@ html.pending body { opacity: 0; }
 .thumb { width: 64px; height: 64px; object-fit: cover; border-radius: 10px; flex: none; }
 .price { font-weight: 700; color: var(--accent); white-space: nowrap; }
 
+.cakes { display: grid; gap: 22px; justify-items: center; }
+.cake-photo {
+  position: relative; width: 100%; max-width: 720px; aspect-ratio: 3 / 2;
+  border-radius: 20px; overflow: hidden; background: var(--bg-alt);
+  box-shadow: 0 8px 28px rgba(0,0,0,.12);
+}
+.cake-photo img { display: block; width: 100%; height: 100%; object-fit: cover; transition: opacity .25s; }
+.cake-photo img.fade { opacity: 0; }
+.cake-photo .ph { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; text-align: center; color: var(--muted); }
+.cake-photo .ph[hidden], .cake-photo img[hidden] { display: none; }
+.cake-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+
 .form { display: grid; gap: 14px; max-width: 520px; }
 .form input, .form textarea {
   padding: 13px 16px; border-radius: 12px; font: inherit;

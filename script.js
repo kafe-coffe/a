@@ -83,7 +83,7 @@ function renderFilters() {
 $("filters").addEventListener("click", e => {
   const btn = e.target.closest(".chip");
   if (!btn) return;
-  document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+  $("filters").querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
   btn.classList.add("active");
   renderMenu(Number(btn.dataset.index));
 });
@@ -159,6 +159,50 @@ function applyMenu(d) {
   renderMenu();
 }
 
+// --- Торты: выбор кнопки меняет фото сверху ---
+function applyCakes(d) {
+  if (!d || !Array.isArray(d.items) || d.items.length === 0) return;
+  $("cakes").hidden = false;
+  $("navCakes").hidden = false;
+  setText($("cakesTitle"), d.title);
+
+  const img = $("cakeImg"), ph = $("cakePh"), tabs = $("cakeTabs");
+  tabs.replaceChildren();
+
+  function show(i) {
+    const item = d.items[i];
+    tabs.querySelectorAll(".chip").forEach((b, k) => {
+      b.classList.toggle("active", k === i);
+      b.setAttribute("aria-selected", k === i ? "true" : "false");
+    });
+    const src = imgSrc(item.image);
+    if (!src) { img.hidden = true; ph.hidden = false; return; }
+    ph.hidden = true;
+    img.classList.add("fade");
+    const next = new Image();
+    next.onload = next.onerror = () => {
+      img.src = src;
+      img.alt = item.label || "";
+      img.hidden = false;
+      requestAnimationFrame(() => img.classList.remove("fade"));
+    };
+    next.src = src;
+  }
+
+  d.items.forEach((item, i) => {
+    const b = document.createElement("button");
+    b.className = "chip";
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.textContent = item.label || "";
+    b.addEventListener("click", () => show(i));
+    tabs.appendChild(b);
+    const src = imgSrc(item.image);
+    if (src) new Image().src = src; // подгружаем заранее, чтобы переключение было мгновенным
+  });
+  show(0);
+}
+
 let contactData = null;
 function applyContact(d) {
   if (!d) return;
@@ -168,12 +212,13 @@ function applyContact(d) {
   setText($("formBtn"), d.button);
 }
 
-Promise.all(["general", "home", "about", "menu", "contact"].map(load)).then(
-  ([general, home, about, menu, contact]) => {
+Promise.all(["general", "home", "about", "menu", "cakes", "contact"].map(load)).then(
+  ([general, home, about, menu, cakes, contact]) => {
     applyGeneral(general);
     applyHome(home);
     applyAbout(about);
     applyMenu(menu);
+    applyCakes(cakes);
     applyContact(contact);
     reveal();
   }
