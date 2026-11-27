@@ -103,6 +103,30 @@ content:
                 label: Фото (необязательно)
                 type: image
 
+  - name: cakes
+    label: Торты
+    type: file
+    path: content/cakes.json
+    format: json
+    fields:
+      - name: title
+        label: Заголовок раздела
+        type: string
+      - name: items
+        label: Кнопки и фото (фото показывается при нажатии на кнопку)
+        type: object
+        list:
+          collapsible:
+            collapsed: false
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Название кнопки
+            type: string
+          - name: image
+            label: Фото торта
+            type: image
+
   - name: contact
     label: Контакты
     type: file
@@ -136,6 +160,9 @@ content:
         type: string
       - name: navMenu
         label: Пункт меню «Меню»
+        type: string
+      - name: navCakes
+        label: Пункт меню «Торты»
         type: string
       - name: navContact
         label: Пункт меню «Контакты»
