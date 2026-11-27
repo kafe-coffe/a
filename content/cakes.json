@@ -1,9 +1,21 @@
 {
   "title": "Торты",
   "items": [
-    { "label": "Клубничный", "image": "" },
-    { "label": "Шоколадный", "image": "" },
-    { "label": "Молочный",   "image": "" },
-    { "label": "Сгущённый",   "image": "" }
+    {
+      "label": "ягодный",
+      "image": "/images/mwzbwrr1-9nfl5ini.jpg"
+    },
+    {
+      "label": "Шоколадный",
+      "image": "/images/mwzbxato-cy6h38ef.jpg"
+    },
+    {
+      "label": "фруктовый",
+      "image": "/images/mwzc02ss-d20ziq7e.jpg"
+    },
+    {
+      "label": "вишня-шоколад",
+      "image": "/images/mwzc0jvx-z90m9s6y.jpg"
+    }
   ]
 }
