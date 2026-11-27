@@ -1,0 +1,151 @@
+media:
+  input: images
+  output: /images
+  rename: random
+  categories: [image]
+
+content:
+  - name: home
+    label: Главный экран
+    type: file
+    path: content/home.json
+    format: json
+    fields:
+      - name: title
+        label: Заголовок (Enter — перенос строки)
+        type: text
+      - name: text
+        label: Подзаголовок
+        type: text
+      - name: button
+        label: Текст кнопки
+        type: string
+      - name: image
+        label: Фото на фоне (необязательно)
+        type: image
+
+  - name: about
+    label: О нас
+    type: file
+    path: content/about.json
+    format: json
+    fields:
+      - name: title
+        label: Заголовок раздела
+        type: string
+      - name: cards
+        label: Карточки
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: icon
+            label: Значок-эмодзи (если нет фото)
+            type: string
+          - name: image
+            label: Фото (заменяет значок)
+            type: image
+          - name: title
+            label: Заголовок
+            type: string
+          - name: text
+            label: Текст
+            type: text
+
+  - name: menu
+    label: Меню
+    type: file
+    path: content/menu.json
+    format: json
+    fields:
+      - name: title
+        label: Заголовок раздела
+        type: string
+      - name: allLabel
+        label: Название кнопки «показать всё»
+        type: string
+      - name: currency
+        label: Валюта (например ₴)
+        type: string
+      - name: categories
+        label: Разделы меню
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Название раздела
+            type: string
+          - name: items
+            label: Позиции
+            type: object
+            list:
+              collapsible:
+                collapsed: true
+                summary: "{name} — {price}"
+            fields:
+              - name: name
+                label: Название
+                type: string
+              - name: desc
+                label: Описание
+                type: string
+              - name: price
+                label: Цена (число)
+                type: number
+                options:
+                  min: 0
+              - name: image
+                label: Фото (необязательно)
+                type: image
+
+  - name: contact
+    label: Контакты
+    type: file
+    path: content/contact.json
+    format: json
+    fields:
+      - name: title
+        label: Заголовок раздела
+        type: string
+      - name: text
+        label: Адрес и время работы
+        type: text
+      - name: button
+        label: Текст кнопки формы
+        type: string
+      - name: success
+        label: Ответ после отправки формы ({name} — имя посетителя)
+        type: text
+
+  - name: general
+    label: Общее (название, меню сверху, подвал)
+    type: file
+    path: content/general.json
+    format: json
+    fields:
+      - name: brand
+        label: Название в шапке сайта
+        type: string
+      - name: navAbout
+        label: Пункт меню «О нас»
+        type: string
+      - name: navMenu
+        label: Пункт меню «Меню»
+        type: string
+      - name: navContact
+        label: Пункт меню «Контакты»
+        type: string
+      - name: footer
+        label: Текст внизу страницы (год добавится сам)
+        type: string
+      - name: title
+        label: Название вкладки браузера
+        type: string
+      - name: description
+        label: Описание для поиска Google
+        type: text
